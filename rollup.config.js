@@ -108,7 +108,7 @@ async function main()
         }],
         plugins: [
             json(),
-            typescript(),
+            typescript({ tsconfig: './tsconfig.json' }),
             dts(),
         ],
     });

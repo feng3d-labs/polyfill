@@ -101,7 +101,7 @@ export type Lazy<T> = T | (() => T);
 export type LazyObject<T> = { [P in keyof T]: Lazy<T[P]>; };
 
 export const lazy = {
-    getvalue <T>(lazyItem: Lazy<T>): T
+    getvalue<T>(lazyItem: Lazy<T>): T
     {
         if (typeof lazyItem === 'function')
         { return (lazyItem as any)(); }

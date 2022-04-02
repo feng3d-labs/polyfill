@@ -1,5 +1,5 @@
-import { Constructor } from 'bundles/feng3d/src';
 import { objectIsEmpty } from './Object';
+import { Constructor } from './Types';
 
 export const __class__ = '__class__';
 
