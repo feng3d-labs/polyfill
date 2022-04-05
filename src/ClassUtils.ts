@@ -126,7 +126,7 @@ export class ClassUtils
         return instance;
     }
 
-    getInstanceByDefinition<T extends any>(cls: Constructor<T>): T
+    getInstanceByDefinition<T>(cls: Constructor<T>): T
     {
         console.assert(cls);
         if (!cls) return undefined;
