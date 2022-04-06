@@ -1,3 +1,4 @@
+import { ArrayUtils } from './ArrayUtils';
 import { gPartial } from './Types';
 
 /**
@@ -226,7 +227,7 @@ Object.equalDeep = function (a, b)
     //
     const akeys = Object.keys(a);
     const bkeys = Object.keys(b);
-    if (!Array.equal(akeys, bkeys)) return false;
+    if (!ArrayUtils.equal(akeys, bkeys)) return false;
     if (Array.isArray(a) && Array.isArray(b)) return a.length === b.length;
     // 检测所有属性
     for (let i = 0; i < akeys.length; i++)
@@ -323,3 +324,4 @@ export function objectIsEmpty(obj: any)
 }
 
 export { };
+
