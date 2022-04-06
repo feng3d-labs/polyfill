@@ -1,4 +1,4 @@
-import { objectIsEmpty } from './Object';
+import { ObjectUtils } from './ObjectUtils';
 import { Constructor } from './Types';
 
 export const __class__ = '__class__';
@@ -18,7 +18,7 @@ export class ClassUtils
      */
     getQualifiedClassName(value: any): string
     {
-        if (objectIsEmpty(value))
+        if (ObjectUtils.objectIsEmpty(value))
         { return 'null'; }
 
         const classUtilsHandlers = classUtils.classUtilsHandlers;

@@ -61,7 +61,7 @@ export class ObjectUtils
      */
     static isObject(object: any): boolean
     {
-        return object !== null && (ObjectUtils.constructor === Object || (ObjectUtils.constructor.name === 'Object'));// 兼容其他 HTMLIFrameElement 传入的Object
+        return object !== null && (object.constructor === Object || (object.constructor.name === 'Object'));// 兼容其他 HTMLIFrameElement 传入的Object
     }
 
     /**
@@ -167,18 +167,18 @@ export class ObjectUtils
      * @param handlers 处理函数列表，先于 ObjectUtils.assignDeepDefaultHandlers 执行。函数返回值为true表示该属性赋值已完成跳过默认属性赋值操作，否则执行默认属性赋值操作。执行在 ObjectUtils.DefaultAssignDeepReplacers 前。
      * @param deep 赋值深度，deep<1时直接返回。
      */
-    static assignDeep<T>(target: T, source: gPartial<T>, handlers?: AssignDeepHandler[], deep?: number): T
+    static assignDeep<T>(target: T, source: gPartial<T>, handlers: AssignDeepHandler[] = [], deep = Number.MAX_SAFE_INTEGER): T
     {
         if (ObjectUtils.objectIsEmpty(source)) return target;
         if (deep < 1) return target;
         const keys = Object.keys(source);
-        const handles = handlers.concat(ObjectUtils.assignDeepDefaultHandlers);
+        const concatHandlers = handlers.concat(ObjectUtils.assignDeepDefaultHandlers);
         keys.forEach((k) =>
         {
             //
-            for (let i = 0; i < handles.length; i++)
+            for (let i = 0; i < concatHandlers.length; i++)
             {
-                if (handles[i](target, source, k, handlers, deep))
+                if (concatHandlers[i](target, source, k, handlers, deep))
                 {
                     return;
                 }

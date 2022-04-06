@@ -82,23 +82,26 @@ describe('ObjectUtils', () =>
         ok(!ObjectUtils.isObject([]));
         ok(!ObjectUtils.isObject(new A()));
         ok(!ObjectUtils.isObject(false));
-        ok(!ObjectUtils.isObject(window));
-        ok(!ObjectUtils.isObject('window'));
+        if (typeof window !== 'undefined')
+        {
+            ok(!ObjectUtils.isObject(window));
+            ok(!ObjectUtils.isObject('window'));
 
-        ok(ObjectUtils.isObject({}));
-        ok(ObjectUtils.isObject({ a: 1 }));
+            ok(ObjectUtils.isObject({}));
+            ok(ObjectUtils.isObject({ a: 1 }));
 
-        // 测试 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
-        const iframe = document.createElement('iframe');
-        iframe.name = 'test ObjectUtils.isObject IFrame';
-        document.body.appendChild(iframe);
-        // @ts-ignore
-        const XObject = window.frames[window.frames.length - 1].Object;
-        const obj = new XObject();
-        ok(ObjectUtils.isObject(obj));
-        ok(Object !== obj.constructor);
+            // 测试 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
+            const iframe = document.createElement('iframe');
+            iframe.name = 'test ObjectUtils.isObject IFrame';
+            document.body.appendChild(iframe);
+            // @ts-ignore
+            const XObject = window.frames[window.frames.length - 1].Object;
+            const obj = new XObject();
+            ok(ObjectUtils.isObject(obj));
+            ok(Object !== obj.constructor);
 
-        iframe.remove();
+            iframe.remove();
+        }
     });
 
     it('equalDeep', () =>
