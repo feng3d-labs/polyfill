@@ -110,7 +110,7 @@ Array.equal = function (self, arr)
     return true;
 };
 
-Array.concatToSelf = function <T> (self: T[], ...items: (T | ConcatArray<T>)[])
+Array.concatToSelf = function <T>(self: T[], ...items: (T | ConcatArray<T>)[])
 {
     let arr: T[] = [];
     items.forEach((v) => { arr = arr.concat(v); });
@@ -151,7 +151,7 @@ Array.unique = function (arr, compare = (a, b) => a === b)
  * @param array 被检查数组
  * @param compare 比较函数
  */
-export function isUnique<T>(array: T[], compare?: (a: T, b: T) => boolean): boolean
+export function isUnique<T>(array: T[], compare = (a: T, b: T) => a === b): boolean
 {
     for (let i = array.length - 1; i >= 0; i--)
     {
@@ -199,7 +199,7 @@ Array.replace = function (arr, a, b, isAdd = true)
     return arr;
 };
 
-Array.create = function <T> (length: number, itemFunc: (index: number) => T)
+Array.create = function <T>(length: number, itemFunc: (index: number) => T)
 {
     const arr: T[] = [];
     for (let i = 0; i < length; i++)
