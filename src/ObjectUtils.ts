@@ -227,12 +227,7 @@ export class ObjectUtils
      */
     static objectIsEmpty(obj: any)
     {
-        if (obj === undefined || obj === null)
-        {
-            return true;
-        }
-
-        return false;
+        return (obj === undefined || obj === null);
     }
 
     /**
