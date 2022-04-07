@@ -61,7 +61,7 @@ export class ObjectUtils
      */
     static isObject(object: any): boolean
     {
-        return object !== null && (object.constructor === Object || (object.constructor.name === 'Object'));// 兼容其他 HTMLIFrameElement 传入的Object
+        return object?.constructor.name === 'Object';
     }
 
     /**
