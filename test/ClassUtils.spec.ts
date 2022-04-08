@@ -8,7 +8,7 @@
 //     {
 //         let className: string;
 //         let className = classUtils.getQualifiedClassName(EventEmitter);
-//         equal(className, 'feng3d.EventEmitter');
+//         equal(className, 'EventEmitter');
 
 //         className = classUtils.getQualifiedClassName(true);
 //         equal(className, 'Boolean');
