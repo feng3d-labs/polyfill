@@ -19,7 +19,8 @@
     "ts-node": {
         "files": true,
         "compilerOptions": {
-            "esModuleInterop": true
+            "esModuleInterop": true,
+            "experimentalDecorators": true,
         }
     }
 }
