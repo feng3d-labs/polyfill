@@ -1,6 +1,6 @@
 {
   "name": "@feng3d/polyfill",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
