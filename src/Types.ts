@@ -110,19 +110,3 @@ export const lazy = {
     }
 };
 
-/**
- * 可销毁对象
- */
-export interface IDisposable
-{
-    /**
-     * 是否已销毁
-     */
-    readonly disposed: boolean;
-
-    /**
-     * 销毁
-     */
-    dispose(): void;
-}
-
