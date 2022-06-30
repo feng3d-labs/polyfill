@@ -1,4 +1,16 @@
-export class MathUtil
+export { };
+
+declare global
+{
+    interface MixinsMathUtil
+    {
+
+    }
+}
+
+export interface MathUtil extends MixinsMathUtil { }
+
+export class MathUtil implements MixinsMathUtil
 {
     /**
      * 角度转弧度因子
