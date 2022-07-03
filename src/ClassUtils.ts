@@ -155,6 +155,7 @@ export function registerClass(constructor: Constructor<any>, className?: string)
     {
         className = prototype.constructor.name;
     }
+    _definitionCache[className] = constructor;
     Object.defineProperty(prototype, __class__, { value: className, writable: true, enumerable: false });
 }
 
