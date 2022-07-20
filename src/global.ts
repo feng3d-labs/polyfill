@@ -1,10 +1,14 @@
+export { };
 
-interface ArrayBuffer
+declare global
 {
-    image: HTMLImageElement
-}
+    interface ArrayBuffer
+    {
+        image: HTMLImageElement
+    }
 
-interface HTMLImageElement
-{
-    arraybuffer: ArrayBuffer
+    interface HTMLImageElement
+    {
+        arraybuffer: ArrayBuffer
+    }
 }

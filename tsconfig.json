@@ -1,28 +1,26 @@
 {
     "compilerOptions": {
         "target": "ES5",
+        "module": "CommonJS",
         "noImplicitAny": false,
         "sourceMap": true,
         "declarationMap": true,
         "declaration": true,
         "experimentalDecorators": true,
-        "composite": true,
         "lib": [
             "ES2015",
-            "DOM"
+            "DOM",
         ],
-        "outFile": "dist/index.js"
+        "outDir": "lib"
     },
-    "files": [
-        //
-        "src/global.ts",
-        "src/Types.ts",
-        "src/Array.ts",
-        "src/ObjectUtils.ts",
-        "src/ArrayUtils.ts",
-        "src/ClassUtils.ts",
-        "src/DataTransform.ts",
-        "src/MapUtils.ts",
-        "src/MathUtil.ts",
-    ]
+    "include": [
+        "src/**/*.ts"
+    ],
+    "ts-node": {
+        "files": true,
+        "compilerOptions": {
+            "esModuleInterop": true,
+            "experimentalDecorators": true,
+        }
+    }
 }
