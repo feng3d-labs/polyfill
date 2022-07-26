@@ -1,3 +1,5 @@
+export { };
+
 declare global
 {
     interface Array<T>
@@ -29,5 +31,3 @@ if (!Array.prototype.includes)
         writable: true,
     });
 }
-
-export { };

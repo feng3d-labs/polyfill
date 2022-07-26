@@ -1,20 +1,4 @@
 /**
- * The unescape() function computes a new string in which hexadecimal escape sequences are replaced with the character that it represents. The escape sequences might be introduced by a function like escape. Usually, decodeURI or decodeURIComponent are preferred over unescape.
- * @param str A string to be decoded.
- * @returns A new string in which certain characters have been unescaped.
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/unescape
- */
-declare function unescape(str: string): string;
-
-/**
- * The escape() function computes a new string in which certain characters have been replaced by a hexadecimal escape sequence.
- * @param str A string to be encoded.
- * @returns A new string in which certain characters have been escaped.
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/escape
- */
-declare function escape(str: string): string;
-
-/**
  * 数据类型转换
  * TypeArray、ArrayBuffer、Blob、File、DataURL、canvas的相互转换
  * @see http://blog.csdn.net/yinwhm12/article/details/73482904

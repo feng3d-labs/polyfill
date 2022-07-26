@@ -8,6 +8,8 @@ export const __class__ = '__class__';
  */
 export class ClassUtils
 {
+    classUtilsHandlers: Function[] = [];
+
     /**
      * 返回对象的类名。
      * @param value 需要类名称的对象，可以将任何 JavaScript 值传递给此方法，包括所有可用的 JavaScript 类型、对象实例、原始类型
@@ -21,6 +23,15 @@ export class ClassUtils
             return 'null';
         }
 
+        const classUtilsHandlers = classUtils.classUtilsHandlers;
+        if (classUtilsHandlers)
+        {
+            classUtilsHandlers.forEach((element) =>
+            {
+                element(value);
+            });
+        }
+
         const prototype: any = value.prototype ? value.prototype : Object.getPrototypeOf(value);
         // eslint-disable-next-line no-prototype-builtins
         if (prototype.hasOwnProperty(__class__))
@@ -28,13 +39,24 @@ export class ClassUtils
             return prototype[__class__];
         }
 
-        const className: string = prototype.constructor.name;
+        let className: string = prototype.constructor.name;
         if (globalThis[className] === prototype.constructor)
         {
             return className;
         }
+        // 在可能的命名空间内查找
+        for (let i = 0; i < _classNameSpaces.length; i++)
+        {
+            const tryClassName = `${_classNameSpaces[i]}.${className}`;
+            if (this.getDefinitionByName(tryClassName) === prototype.constructor)
+            {
+                className = tryClassName;
+                registerClass(prototype.constructor, className);
 
-        console.warn(`${className} 的未定义，请使用 @decoratorRegisterClass 进行注册。`);
+                return className;
+            }
+        }
+        console.warn(`未在给出的命名空间 ${_classNameSpaces} 内找到 ${value}-${className} 的定义`);
 
         return null;
     }
@@ -120,7 +142,7 @@ export class ClassUtils
 
     getInstanceByDefinition<T>(cls: Constructor<T>): T
     {
-        console.assert(cls);
+        console.assert(!!cls);
         if (!cls) return undefined;
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -134,6 +156,17 @@ export class ClassUtils
         // eslint-disable-next-line new-cap
         return new cls();
     }
+
+    /**
+     * 新增反射对象所在的命名空间，使得getQualifiedClassName能够得到正确的结果
+     */
+    addClassNameSpace(namespace: string)
+    {
+        if (_classNameSpaces.indexOf(namespace) === -1)
+        {
+            _classNameSpaces.push(namespace);
+        }
+    }
 }
 
 /**
@@ -142,6 +175,7 @@ export class ClassUtils
 export const classUtils = new ClassUtils();
 
 const _definitionCache = {};
+const _classNameSpaces = ['feng3d'];
 
 /**
  * 为一个类定义注册类名
@@ -169,3 +203,4 @@ export function decoratorRegisterClass(className?: string)
         registerClass(constructor, className);
     };
 }
+

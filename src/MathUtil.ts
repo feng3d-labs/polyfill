@@ -1,5 +1,3 @@
-export { };
-
 declare global
 {
     interface MixinsMathUtil
@@ -250,7 +248,7 @@ export class MathUtil implements MixinsMathUtil
      * source增加或者减少整数倍precision后得到离target最近的值
      *
      * ```
-     * Math.toRound(71,0,5);//运算结果为1
+     * mathUtil.toRound(71,0,5);//运算结果为1
      * ```
      *
      * @param source 初始值

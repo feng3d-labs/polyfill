@@ -2,7 +2,6 @@ export { };
 
 declare global
 {
-
     interface ArrayBuffer
     {
         image: HTMLImageElement
@@ -13,4 +12,3 @@ declare global
         arraybuffer: ArrayBuffer
     }
 }
-
