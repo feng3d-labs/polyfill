@@ -58,7 +58,7 @@ export class ClassUtils
         }
         console.warn(`未在给出的命名空间 ${_classNameSpaces} 内找到 ${value}-${className} 的定义`);
 
-        return className;
+        return null;
     }
 
     /**
